@@ -29,12 +29,34 @@ def clean_guardians(list):
 def clean_list(list):
     clean_height(list)
     clean_experience(list)
+    clean_guardians(list)
     return list
 
-clean_player_list = clean_guardians(copy.deepcopy(PLAYERS))
+
+def team_guardians(list):
+    guardians = []
+    for player in list:
+        guardians.append(player['guardians'])
+    print(", ".join(guardians))
+
+
+def exp_count():
+    experienced = 0
+    notexperienced = 0
+    for player in clean_player_list:
+        if player['experience'] == True:
+            experienced +=1
+        else:
+            notexperienced += 1 
+    return experienced, notexperienced
+
+
+clean_player_list = clean_list(copy.deepcopy(PLAYERS))
 
 
 
 if __name__ == "__main__":
-    for player in clean_player_list:
-        print((player["guardians"]))
+    exp, notexp = exp_count()
+    print(exp, notexp)
+    pass
+        
